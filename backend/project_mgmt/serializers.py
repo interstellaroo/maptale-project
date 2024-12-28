@@ -23,7 +23,7 @@ class NodeSerializer(serializers.ModelSerializer):
         # Merge children and items
         return child_nodes + item_nodes
     
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectDetailSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
 
     class Meta:
@@ -33,3 +33,13 @@ class ProjectSerializer(serializers.ModelSerializer):
     def get_children(self, obj):
         root_children = obj.children.filter(parent=None)
         return NodeSerializer(root_children, many=True).data
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = [
+            'id',
+            'name',
+            'description'
+        ]

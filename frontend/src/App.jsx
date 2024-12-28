@@ -1,28 +1,21 @@
-import { RichTreeView } from '@mui/x-tree-view'
-import useFetch from './hooks/useFetch'
+import { Routes, Route } from 'react-router-dom'
+import MainLayout from './layouts/MainLayout'
+import HomePage from './pages/HomePage'
+import Page404 from './pages/Page404'
+import ProjectPage from './pages/ProjectPage'
+import ProjectDetailsPage from './pages/ProjectDetailsPage'
 
-function App() {
-  const { data, loading, error } = useFetch("http://127.0.0.1:8000/api/project/")
-
-  function getItemLabel(item) {
-    return item.name;
-  }
-
-  if (loading) return <p>Loading..</p>
-  if (error) return <p>{error.message}</p>
-
-  
-  console.log(data)
-  if (data) return (
+const App = () => {
+  return (
     <>
-      <h1>AAAAAA</h1>
-      {data.map((project) => (
-        <div key={project.id} style={{ maxWidth: '300px'}}>
-          <h3>{project.name}</h3>
-          <p>{project.id}</p>
-          <RichTreeView items={project.children} getItemLabel={getItemLabel}/>
-        </div>
-      ))}
+        <MainLayout>
+          <Routes>
+            <Route path='/' element={ <HomePage />} />
+            <Route path='/project' element={ <ProjectPage />} />
+            <Route path='/project/:id' element={ <ProjectDetailsPage />} />
+            <Route path='*' element={ <Page404 />} />
+          </Routes>
+        </MainLayout>
     </>
   )
 }
