@@ -16,6 +16,7 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'text',
         ]
 
 class MapSerializer(serializers.ModelSerializer):
@@ -24,6 +25,7 @@ class MapSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'image',
         ]
 
 class BaseItemPolimorphicSerializer(PolymorphicSerializer):

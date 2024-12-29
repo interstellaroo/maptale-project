@@ -1,5 +1,5 @@
-import { Card, CardActions, CardContent, Typography, Divider, Button, CardHeader } from "@mui/material";
-import { useParams, useNavigate } from "react-router-dom";
+import { Card, CardActions, CardContent, Typography, Divider, Button, CardHeader, IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const ProjectCard = ({ project }) => {
     const navigate = useNavigate()
@@ -16,6 +16,7 @@ const ProjectCard = ({ project }) => {
             <Divider />
             <CardActions>
                 <Button color='inherit' onClick={handleNav}>Show</Button>
+
             </CardActions>
         </Card>
     )

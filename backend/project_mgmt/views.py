@@ -3,10 +3,10 @@ from .models import Node, Project
 from .serializers import ProjectSerializer, ProjectDetailSerializer
 
 
-class ProjectView(generics.ListAPIView):
+class ProjectView(generics.ListCreateAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-class ProjectDetailView(generics.RetrieveAPIView):
+class ProjectDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectDetailSerializer

@@ -1,6 +1,7 @@
-import { RichTreeView } from '@mui/x-tree-view'
+import { RichTreeView, useTreeViewApiRef } from '@mui/x-tree-view'
+import { useState } from 'react';
 
-const ProjectTreeView = ({ project }) => {
+const ProjectTreeView = ({ project, handleItemChange, apiRef }) => {
     function getItemLabel(item) {
         return item.name;
       }
@@ -9,6 +10,8 @@ const ProjectTreeView = ({ project }) => {
         <RichTreeView 
             items={project.children}
             getItemLabel={getItemLabel}
+            apiRef={apiRef}
+            onSelectedItemsChange={handleItemChange}
         />
     )
 }
