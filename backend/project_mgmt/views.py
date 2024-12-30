@@ -1,5 +1,5 @@
 from rest_framework import generics
-from .models import Node, Project
+from .models import Project
 from .serializers import ProjectSerializer, ProjectDetailSerializer
 
 

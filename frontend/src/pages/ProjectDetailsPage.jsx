@@ -41,10 +41,6 @@ const ProjectDetailsPage = () => {
     }
   };
 
-  function handleProjectDelete() {
-    console.log(data.id)
-  }
-
   if (loading) return (
     <CircularProgress />
   )
@@ -56,7 +52,6 @@ const ProjectDetailsPage = () => {
       <Box sx={{ display: 'flex'}}>
         <ProjectSideBar 
           project={data} 
-          handleProjectDelete={handleProjectDelete} 
           handleItemChange={handleItemChange}
           apiRef={apiRef}/>
         <Box sx={{ flexGrow: 1 }}>

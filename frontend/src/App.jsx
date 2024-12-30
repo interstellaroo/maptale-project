@@ -8,13 +8,13 @@ import ProjectDetailsPage from './pages/ProjectDetailsPage'
 const App = () => {
   return (
     <>
-        <MainLayout>
-          <Routes>
-            <Route path='/' element={ <HomePage />} />
-            <Route path='/project' element={ <ProjectPage />} />
-            <Route path='/project/:id' element={ <ProjectDetailsPage />} />
-            <Route path='*' element={ <Page404 />} />
-          </Routes>
+      <MainLayout>
+            <Routes>
+              <Route path='/' element={ <HomePage />} />
+              <Route path='/project' element={ <ProjectPage />} />
+              <Route path='/project/:id' element={ <ProjectDetailsPage />} />
+              <Route path='*' element={ <Page404 />} />
+            </Routes>
         </MainLayout>
     </>
   )

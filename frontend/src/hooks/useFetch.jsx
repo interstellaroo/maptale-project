@@ -20,8 +20,24 @@ const useFetch = (url) => {
                 setLoading(false)
             })
     }, [url]);
+    
+    const refetch = (url) => {
+        setLoading(true)
+        axios
+            .get(url)
+            .then(response => {
+                setData(response.data)
+            })
+            .catch(error => {
+                setError(error)
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+    }
 
-    return { data, loading, error }
+
+    return { data, loading, error, refetch }
 }
 
 export default useFetch;

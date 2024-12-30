@@ -8,14 +8,15 @@ import axios from "axios";
 
 
 const ProjectPage = () => {
-    const { data, loading, error} = useFetch("http://127.0.0.1:8000/api/project/")
+    const url = "http://127.0.0.1:8000/api/project/"
+    const { data, loading, error, refetch } = useFetch(url)
     const [dialogOpen, setDialogOpen] = useState(false)
 
     const handleOpenDialog = () => setDialogOpen(true)
     const handleCloseDialog = () => setDialogOpen(false)
     const handleCreateProject = async (projectData) => {
-        const response = await axios.post("http://127.0.0.1:8000/api/project/", projectData)
-        console.log("Project created:", response.data)
+        const response = await axios.post(url, projectData)
+        refetch(url)
     };
 
     // Page display
@@ -40,7 +41,7 @@ const ProjectPage = () => {
             <CreateProjectDialog 
                 open={dialogOpen} 
                 onClose={handleCloseDialog} 
-                onCreate={handleCreateProject} 
+                onCreate={handleCreateProject}
             />
             <Box sx={{ marginTop: '20px', display: 'grid', gap: 1, gridTemplateColumns: 'repeat(3, 1fr)'}}>
                 {data.map((project) => (

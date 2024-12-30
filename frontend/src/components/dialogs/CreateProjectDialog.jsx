@@ -1,61 +1,72 @@
 import React, { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from "@mui/material";
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, TextField } from "@mui/material";
 
 const CreateProjectDialog = ({ open, onClose, onCreate }) => {
-    const [formData, setFormData] = useState({ name: "", description: "" });
-    const [creating, setCreating] = useState(false);
+    const [creating, setCreating] = React.useState(false);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+  // Function to handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const formJson = Object.fromEntries(formData.entries());
+
+    const newProject = {
+      name: formJson.name,
+      description: formJson.description,
     };
 
-    const handleCreate = async () => {
-        setCreating(true);
-        try {
-            await onCreate(formData); // Call the passed-in create function
-            setFormData({ name: "", description: "" });
-            onClose(); // Close the dialog on success
-        } catch (error) {
-            console.error("Error creating project:", error);
-        } finally {
-            setCreating(false);
-        }
-    };
+    try {
+      setCreating(true);
+      // Pass the form data to the parent handler for creation
+      await onCreate(newProject);
+      onClose(); // Close dialog after successful creation
+    } catch (error) {
+      console.error("Error creating project:", error);
+    } finally {
+      setCreating(false);
+    }
+  };
 
-    return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Create New Project</DialogTitle>
-            <DialogContent>
-                <TextField
-                    margin="dense"
-                    label="Project Name"
-                    name="name"
-                    fullWidth
-                    value={formData.name}
-                    onChange={handleInputChange}
-                />
-                <TextField
-                    margin="dense"
-                    label="Project Description"
-                    name="description"
-                    fullWidth
-                    multiline
-                    rows={4}
-                    value={formData.description}
-                    onChange={handleInputChange}
-                />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="secondary">
-                    Cancel
-                </Button>
-                <Button onClick={handleCreate} color="primary" disabled={creating}>
-                    {creating ? "Creating..." : "Create"}
-                </Button>
-            </DialogActions>
-        </Dialog>
-    );
+  return (
+    <Dialog open={open} onClose={onClose} PaperProps={{ component: 'form', onSubmit: handleSubmit }}>
+      <DialogTitle>Create New Project</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          To create a new project, please enter the project name and description below.
+        </DialogContentText>
+        <TextField
+          autoFocus
+          required
+          margin="dense"
+          id="name"
+          name="name"
+          label="Project Name"
+          type="text"
+          fullWidth
+          variant="standard"
+        />
+        <TextField
+          margin="dense"
+          id="description"
+          name="description"
+          label="Project Description"
+          type="text"
+          fullWidth
+          multiline
+          rows={4}
+          variant="standard"
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} color="secondary">
+          Cancel
+        </Button>
+        <Button type="submit" color="primary" disabled={creating}>
+          {creating ? "Creating..." : "Create"}
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 };
 
 export default CreateProjectDialog;
