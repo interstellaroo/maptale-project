@@ -2,14 +2,14 @@ import { Box, Divider, Typography, Button, Fab, IconButton } from '@mui/material
 import ProjectTreeView from './ProjectTreeView';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-
+import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 
 const ProjectSideBar = ({ project, handleProjectDelete, handleItemChange, apiRef }) => {
     return (
         <Box sx={{ 
             maxWidth: '280px',
             minWidth: '280px', 
-            minHeight: '100vh', 
+            minHeight: '88vh', 
             backgroundColor: '#b3bfb8',
             borderRight: 1,
             }}>
@@ -21,15 +21,19 @@ const ProjectSideBar = ({ project, handleProjectDelete, handleItemChange, apiRef
                 maxWidth: '280px',
                 minHeight: '80px',}}>
                 <Typography variant='h6' sx={{ 
-                    marginTop: '10px',
-                    marginBottom: '10px'}}>
+                    marginTop: '10px'}}>
                     {project.name}
                 </Typography>
                 <IconButton
                     size='small'
-
+                    sx={{ m: "10px"}}
                     onClick={handleProjectDelete}>
                     <DeleteRoundedIcon/>
+                </IconButton>
+                <IconButton
+                    size='small'
+                    sx={{ m: "10px"}}>
+                    <DriveFileRenameOutlineRoundedIcon/>
                 </IconButton>
             </Box>
             <Divider />
