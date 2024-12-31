@@ -42,8 +42,7 @@ const PutProjectDialog = ({ project, open, onClose }) => {
               label="Project Name"
               type="text"
               fullWidth
-              defaultValue={project.name} // Set the initial value from the `project` prop
-              variant="standard"
+              defaultValue={project.name}
             />
             <TextField
               margin="dense"
@@ -52,10 +51,9 @@ const PutProjectDialog = ({ project, open, onClose }) => {
               label="Project Description"
               type="text"
               fullWidth
-              defaultValue={project.description} // Set the initial value from the `project` prop
+              defaultValue={project.description}
               multiline
               rows={4}
-              variant="standard"
             />
           </DialogContent>
           <DialogActions>

@@ -27,7 +27,7 @@ class BaseItem(PolymorphicModel):
         return self.name
     
 class Note(BaseItem):
-    text = models.TextField()
+    text = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return f"Note: {self.name}"

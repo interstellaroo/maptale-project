@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PutProjectDialog from './dialogs/PutProjectDialog';
 import { useState } from 'react';
+import AddItemDialog from './dialogs/AddItemDialog';
 
 
 const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
@@ -23,6 +24,10 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
     const [projectPutOpen, setProjectPutOpen] = useState(false)
     const handleProjectPutClose = () => setProjectPutOpen(false)
     const handleProjectPutOpen = () => setProjectPutOpen(true)
+
+    const [itemDialogOpen, setitemDialogOpen] = useState(false)
+    const handleItemDialogClose = () => setitemDialogOpen(false)
+    const handleItemDialogOpen = () => setitemDialogOpen(true)
 
     return (
         <Box sx={{
@@ -81,7 +86,12 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
                 alignItems: 'center',
                 marginTop: '20px',
             }}>
-                <Button color='inherit' variant='outlined' endIcon={<AddRoundedIcon />}>Add</Button>
+                <Button color='inherit' variant='outlined' endIcon={<AddRoundedIcon /> } onClick={handleItemDialogOpen}>Add</Button>
+                <AddItemDialog 
+                    project={project}
+                    open={itemDialogOpen}
+                    onClose={handleItemDialogClose}
+                />
             </Box>
         </Box>
     )

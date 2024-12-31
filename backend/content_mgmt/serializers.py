@@ -8,6 +8,7 @@ class BaseItemSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'node'
         ]
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -17,6 +18,7 @@ class NoteSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'text',
+            'node'
         ]
 
 class MapSerializer(serializers.ModelSerializer):
@@ -26,6 +28,7 @@ class MapSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'image',
+            'node'
         ]
 
 class BaseItemPolimorphicSerializer(PolymorphicSerializer):
