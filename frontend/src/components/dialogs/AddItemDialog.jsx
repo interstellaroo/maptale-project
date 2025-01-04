@@ -24,7 +24,7 @@ const AddItemDialog = ({ project, open, onClose }) => {
     const [selectedParentFolder, setSelectedParentFolder] = useState('');
     const [mapImage, setMapImage] = useState(null)
     
-    // Flattening out the project structure and filtering the root nodes
+    // Flattening out the project structure
     const flattenProjectStructure = (children) => {
         let result = [];
         for (const child of children) {
@@ -37,16 +37,6 @@ const AddItemDialog = ({ project, open, onClose }) => {
     };
     const flattenedItems = flattenProjectStructure(project.children);
     const projectFolders = flattenedItems.filter(item => !item.resourcetype);
-
-    // Changing the selected item type 
-    const handleItemTypeChange = (e) => {
-        setSelectedItemType(e.target.value);
-    };
-
-    // Changing the selected parent folder
-    const handleParentFolderChange = (e) => {
-        setSelectedParentFolder(e.target.value);
-    };
 
     // Handle the POST request
     const handleSubmit = async (event) => {
@@ -123,7 +113,7 @@ const AddItemDialog = ({ project, open, onClose }) => {
             <DialogTitle>Add Item to {project.name}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    Choose parent folder, image type and add it to the project.
+                    Choose parent folder, item type and add it to the project.
                 </DialogContentText>
                 <Box sx={{ display: 'flex', flexDirection: 'column'}}>
                     <TextField
@@ -132,7 +122,7 @@ const AddItemDialog = ({ project, open, onClose }) => {
                         label='Item type'
                         defaultValue={'node'}
                         value={selectedItemType}
-                        onChange={handleItemTypeChange}
+                        onChange={(e) => setSelectedItemType(e.target.value)}
                         helperText='Select the type of item you want to create'
                     >
                         {itemTypes.map((option) => (
@@ -147,7 +137,7 @@ const AddItemDialog = ({ project, open, onClose }) => {
                         label='Parent folder'
                         defaultValue={""}
                         value={selectedParentFolder}
-                        onChange={handleParentFolderChange}
+                        onChange={(e) => setSelectedParentFolder(e.target.value)}
                         helperText='Select folder for your item'
                     >
                         {selectedItemType == 'node' && (

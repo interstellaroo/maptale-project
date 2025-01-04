@@ -16,7 +16,7 @@ const ProjectPage = () => {
     const handleCloseDialog = () => setDialogOpen(false)
     const handleCreateProject = async (projectData) => {
         const response = await axios.post(url, projectData)
-        refetch(url)
+        refetch()
     };
 
     // Page display

@@ -1,13 +1,15 @@
 import { Box, Divider, Typography, Button, IconButton, Stack } from '@mui/material'
 import ProjectTreeView from './ProjectTreeView';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import PutProjectDialog from './dialogs/PutProjectDialog';
 import { useState } from 'react';
 import AddItemDialog from './dialogs/AddItemDialog';
+import RemoveItemDialog from './dialogs/RemoveItemDialog';
 
 
 const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
@@ -28,6 +30,10 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
     const [itemDialogOpen, setitemDialogOpen] = useState(false)
     const handleItemDialogClose = () => setitemDialogOpen(false)
     const handleItemDialogOpen = () => setitemDialogOpen(true)
+
+    const [itemRemoveOpen, setitemRemoveOpen] = useState(false)
+    const handleItemRemoveClose = () => setitemRemoveOpen(false)
+    const handleItemRemoveOpen = () => setitemRemoveOpen(true)
 
     return (
         <Box sx={{
@@ -82,15 +88,21 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
             </Box>
             <Box sx={{
                 display: 'flex',
-                justifyContent: 'center', 
+                justifyContent: 'space-evenly',
                 alignItems: 'center',
                 marginTop: '20px',
             }}>
-                <Button color='inherit' variant='outlined' endIcon={<AddRoundedIcon /> } onClick={handleItemDialogOpen}>Add</Button>
+                <Button color='inherit' variant='outlined' endIcon={<AddCircleOutlineRoundedIcon /> } onClick={handleItemDialogOpen}>Add</Button>
                 <AddItemDialog 
                     project={project}
                     open={itemDialogOpen}
                     onClose={handleItemDialogClose}
+                />
+                <Button color='inherit' variant='outlined' endIcon={<HighlightOffRoundedIcon /> } onClick={handleItemRemoveOpen}>Remove</Button>
+                <RemoveItemDialog 
+                    project={project}
+                    open={itemRemoveOpen}
+                    onClose={handleItemRemoveClose}
                 />
             </Box>
         </Box>

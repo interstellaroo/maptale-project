@@ -1,22 +1,20 @@
-import { useEffect } from 'react'
-import { useEditor, EditorContent, FloatingMenu, BubbleMenu } from '@tiptap/react'
+import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import Bold from '@tiptap/extension-bold'
+import Italic from '@tiptap/extension-italic'
+import Underline from '@tiptap/extension-underline'
+import Heading from '@tiptap/extension-heading'
+import BulletList from '@tiptap/extension-bullet-list'
+import OrderedList from '@tiptap/extension-ordered-list'
+import ListItem from '@tiptap/extension-list-item'
+import Link from '@tiptap/extension-link'
+import { Button, Box, ButtonGroup } from '@mui/material'
 
-const extensions = [StarterKit]
-
-const NoteDisplay = ({ note }) => {
-    const editor = useEditor({
-        extensions,
-        content: note?.text || '',
-    })
-
+const NoteDisplay = () => {
     return (
         <>
-            <EditorContent editor={editor} />
-            <FloatingMenu editor={editor}>This is the floating menu</FloatingMenu>
-            <BubbleMenu editor={editor}>This is the bubble menu</BubbleMenu>
         </>
     )
 }
 
-export default NoteDisplay;
+export default NoteDisplay
