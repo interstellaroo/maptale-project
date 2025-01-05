@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react"
 
 
-const RemoveItemDialog = ({ project, open, onClose}) => {
+const RemoveItemDialog = ({ project, open, onClose, refetch }) => {
     const [removing, setRemoving] = useState(false)
     const [selectedItem, setSelectedItem] = useState(null)
 
@@ -46,6 +46,7 @@ const RemoveItemDialog = ({ project, open, onClose}) => {
             }
 
             const response = await axios.delete(url)
+            refetch()
             onClose();
         } catch (error) {
             console.error('Error creating item:', error);

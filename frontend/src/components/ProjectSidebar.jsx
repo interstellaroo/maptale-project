@@ -12,7 +12,7 @@ import AddItemDialog from './dialogs/AddItemDialog';
 import RemoveItemDialog from './dialogs/RemoveItemDialog';
 
 
-const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
+const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
     const navigate = useNavigate()
     const handleProjectDelete = async () => {
         try {
@@ -75,6 +75,7 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
                             project={project}
                             open={projectPutOpen}
                             onClose={handleProjectPutClose}
+                            refetch={refetch}
                         />
                     </Box>
                 </Stack>
@@ -97,12 +98,14 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef }) => {
                     project={project}
                     open={itemDialogOpen}
                     onClose={handleItemDialogClose}
+                    refetch={refetch}
                 />
                 <Button color='inherit' variant='outlined' endIcon={<HighlightOffRoundedIcon /> } onClick={handleItemRemoveOpen}>Remove</Button>
                 <RemoveItemDialog 
                     project={project}
                     open={itemRemoveOpen}
                     onClose={handleItemRemoveClose}
+                    refetch={refetch}
                 />
             </Box>
         </Box>

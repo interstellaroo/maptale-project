@@ -2,7 +2,7 @@ import { Button, Dialog, DialogContent, DialogContentText, DialogActions, Dialog
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const PutProjectDialog = ({ project, open, onClose }) => {
+const PutProjectDialog = ({ project, open, onClose, refetch }) => {
     const [updating, setUpdating] = useState(false);
 
     const handleSubmit = async (event) => {
@@ -17,12 +17,13 @@ const PutProjectDialog = ({ project, open, onClose }) => {
 
     try {
         setUpdating(true);
-        const response = await axios.put(`http://127.0.0.1:8000/api/project/${project.id}`, updatedProject);
-        onClose();
+        const response = await axios.put(`http://127.0.0.1:8000/api/project/${project.id}`, updatedProject)
+        refetch()
+        onClose()
     } catch (error) {
-        console.log(error);
+        console.log(error)
     } finally {
-        setUpdating(false);
+        setUpdating(false)
     }
     };
 

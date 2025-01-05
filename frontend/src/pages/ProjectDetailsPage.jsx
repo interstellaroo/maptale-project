@@ -9,7 +9,7 @@ import MapDisplay from '../components/MapDisplay'
 
 const ProjectDetailsPage = () => {
   const { id } = useParams()
-  const { data, loading, error } = useFetch(`http://127.0.0.1:8000/api/project/${id}`)
+  const { data, loading, error, refetch } = useFetch(`http://127.0.0.1:8000/api/project/${id}`)
   const [selectedItem, setSelectedItem] = useState(null)
   const apiRef = useTreeViewApiRef();
 
@@ -53,7 +53,9 @@ const ProjectDetailsPage = () => {
         <ProjectSideBar 
           project={data} 
           handleItemChange={handleItemChange}
-          apiRef={apiRef}/>
+          apiRef={apiRef}
+          refetch={refetch}
+        />
         <Box sx={{ flexGrow: 1 }}>
         <Box sx={{ padding: 2 }}>
           <Typography variant="h6">

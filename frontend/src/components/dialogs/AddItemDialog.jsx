@@ -17,7 +17,7 @@ const VisuallyHiddenInput = styled('input')({
     width: 1,
 });
 
-const AddItemDialog = ({ project, open, onClose }) => {
+const AddItemDialog = ({ project, open, onClose, refetch }) => {
     const [creating, setCreating] = useState(false)
     // Main state values selected in the form
     const [selectedItemType, setSelectedItemType] = useState('node')
@@ -92,7 +92,7 @@ const AddItemDialog = ({ project, open, onClose }) => {
             const response = await axios.post(url, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
-            console.log('Created item:', response.data);
+            refetch()
             onClose();
         } catch (error) {
             console.error('Error creating item:', error);
