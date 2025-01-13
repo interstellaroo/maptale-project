@@ -12,7 +12,6 @@ const NavBar = () => {
                 </Typography>
                 <Button color='inherit' onClick={() => navigate('/')}>HOME</Button>
                 <Button color='inherit' onClick={() => navigate('/project')}>PROJECTS</Button>
-                <Button color='inherit' onClick={() => navigate('/login')}>LOGIN</Button>
             </Toolbar>
         </AppBar>
     )

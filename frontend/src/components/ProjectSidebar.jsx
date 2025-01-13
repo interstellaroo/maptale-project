@@ -51,10 +51,11 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
                 maxWidth: '280px',
                 minHeight: '80px',}}>
                 <Stack>
-                    <Typography variant='h6' sx={{
-                        marginTop: '10px'}}>
-                        {project.name}
-                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Typography variant='h6' sx={{ marginTop: '10px', textAlign: 'center' }}>
+                            {project.name}
+                        </Typography>
+                    </Box>
                     <Box sx={{ 
                         display: 'flex', 
                         justifyContent: 'center', 

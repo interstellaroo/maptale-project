@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from .models import BaseItem, Note, Map, Node, Pin
 
-class PinDetailedSerializer(serializers.ModelSerializer):
+class PinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pin
         fields = [
@@ -13,16 +13,6 @@ class PinDetailedSerializer(serializers.ModelSerializer):
             'y',
             ]
         
-class PinSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Pin
-        fields = [
-            'id', 
-            'note',
-            'x', 
-            'y', 
-            ]
-
 class BaseItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = BaseItem
