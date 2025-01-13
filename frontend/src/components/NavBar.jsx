@@ -15,7 +15,7 @@ const NavBar = () => {
                 <Button color='inherit' onClick={() => navigate('/login')}>LOGIN</Button>
             </Toolbar>
         </AppBar>
-    );
+    )
 }
 
-export default NavBar;
+export default NavBar

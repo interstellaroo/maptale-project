@@ -9,4 +9,5 @@ urlpatterns = [
     path('note/<uuid:pk>', NoteDetailView.as_view()),
     path('map', MapView.as_view()),
     path('map/<uuid:pk>', MapDetailView.as_view()),
+    path('pin', PinView.as_view()),
 ]

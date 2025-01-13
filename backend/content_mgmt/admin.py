@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BaseItem, Note, Map, Node
+from .models import BaseItem, Note, Map, Node, Pin
 from polymorphic.admin import PolymorphicParentModelAdmin, PolymorphicChildModelAdmin
 from mptt.admin import MPTTModelAdmin
 
@@ -28,3 +28,8 @@ class NoteAdmin(PolymorphicChildModelAdmin):
 class MapAdmin(PolymorphicChildModelAdmin):
     base_model = Map
     list_display = ('name', 'node', 'image', 'created_at')
+
+@admin.register(Pin)
+class PinAdmin(admin.ModelAdmin):
+    base_model = Pin
+    list_display = ('id', 'map', 'note' , 'x', 'y')

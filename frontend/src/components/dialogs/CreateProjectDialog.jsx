@@ -1,31 +1,29 @@
-import React, { useState } from "react";
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, TextField } from "@mui/material";
+import React, { useState } from "react"
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, TextField } from "@mui/material"
 
 const CreateProjectDialog = ({ open, onClose, onCreate }) => {
-    const [creating, setCreating] = React.useState(false);
+    const [creating, setCreating] = React.useState(false)
 
-  // Function to handle form submission
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const formJson = Object.fromEntries(formData.entries());
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const formJson = Object.fromEntries(formData.entries())
 
-    const newProject = {
-      name: formJson.name,
-      description: formJson.description,
-    };
+  const newProject = {
+    name: formJson.name,
+    description: formJson.description,
+  }
 
-    try {
-      setCreating(true);
-      // Pass the form data to the parent handler for creation
-      await onCreate(newProject);
-      onClose(); // Close dialog after successful creation
-    } catch (error) {
-      console.error("Error creating project:", error);
-    } finally {
-      setCreating(false);
-    }
-  };
+  try {
+    setCreating(true)
+    await onCreate(newProject)
+    onClose()
+  } catch (error) {
+    console.error("Error creating project:", error)
+  } finally {
+    setCreating(false)
+  }
+}
 
   return (
     <Dialog open={open} onClose={onClose} PaperProps={{ component: 'form', onSubmit: handleSubmit }}>
@@ -66,7 +64,7 @@ const CreateProjectDialog = ({ open, onClose, onCreate }) => {
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
-export default CreateProjectDialog;
+export default CreateProjectDialog

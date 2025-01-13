@@ -39,4 +39,13 @@ class Map(BaseItem):
     def __str__(self):
         return f"Map: {self.name}"
 
-    
+
+class Pin(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    map = models.ForeignKey(Map, on_delete=models.CASCADE, related_name='pins')
+    note = models.ForeignKey(Note, on_delete=models.CASCADE, related_name='pins')
+    x = models.FloatField()
+    y = models.FloatField()
+
+    def __str__(self):
+        return f"Pin on {self.map.name} at ({self.x}, {self.y})"

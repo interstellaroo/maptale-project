@@ -1,15 +1,15 @@
 import { Box, Divider, Typography, Button, IconButton, Stack } from '@mui/material'
-import ProjectTreeView from './ProjectTreeView';
-import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import PutProjectDialog from './dialogs/PutProjectDialog';
-import { useState } from 'react';
-import AddItemDialog from './dialogs/AddItemDialog';
-import RemoveItemDialog from './dialogs/RemoveItemDialog';
+import ProjectTreeView from './ProjectTreeView'
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded'
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded'
+import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded'
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import PutProjectDialog from './dialogs/PutProjectDialog'
+import { useState } from 'react'
+import AddItemDialog from './dialogs/AddItemDialog'
+import RemoveItemDialog from './dialogs/RemoveItemDialog'
 
 
 const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
@@ -39,7 +39,7 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
         <Box sx={{
             maxWidth: '280px',
             minWidth: '280px', 
-            minHeight: '88vh', 
+            minHeight: '90vh', 
             backgroundColor: '#b3bfb8',
             borderRight: 1,
             }}>
@@ -112,4 +112,4 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
     )
 }
 
-export default ProjectSideBar;
+export default ProjectSideBar

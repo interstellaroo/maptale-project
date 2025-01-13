@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .serializers import BaseItemPolimorphicSerializer, NodeDetailSerializer, NoteSerializer, MapSerializer
-from .models import BaseItem, Node, Note, Map
+from .serializers import BaseItemPolimorphicSerializer, NodeDetailSerializer, NoteSerializer, MapSerializer, PinDetailedSerializer
+from .models import BaseItem, Node, Note, Map, Pin
 
 # Base Item
 class BaseItemView(generics.ListCreateAPIView):
@@ -33,3 +33,7 @@ class MapView(generics.ListCreateAPIView):
 class MapDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Map.objects.all()
     serializer_class = MapSerializer
+
+class PinView(generics.ListCreateAPIView):
+    queryset = Pin.objects.all()
+    serializer_class = PinDetailedSerializer

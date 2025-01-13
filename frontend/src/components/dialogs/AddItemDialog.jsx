@@ -1,7 +1,7 @@
-import { DialogContent, Box, DialogContentText, DialogTitle, TextField, Dialog, Divider, FormControl, InputLabel, Select, MenuItem, DialogActions, Button, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import {styled} from "@mui/material";
+import { DialogContent, Box, DialogContentText, DialogTitle, TextField, Dialog, Divider, FormControl, InputLabel, Select, MenuItem, DialogActions, Button, Typography } from "@mui/material"
+import { useState, useEffect } from "react"
+import CloudUploadIcon from '@mui/icons-material/CloudUpload'
+import {styled} from "@mui/material"
 import axios from 'axios'
 
 // Component for file input
@@ -15,98 +15,98 @@ const VisuallyHiddenInput = styled('input')({
     left: 0,
     whiteSpace: 'nowrap',
     width: 1,
-});
+})
 
 const AddItemDialog = ({ project, open, onClose, refetch }) => {
     const [creating, setCreating] = useState(false)
     // Main state values selected in the form
     const [selectedItemType, setSelectedItemType] = useState('node')
-    const [selectedParentFolder, setSelectedParentFolder] = useState('');
+    const [selectedParentFolder, setSelectedParentFolder] = useState('')
     const [mapImage, setMapImage] = useState(null)
     
     // Flattening out the project structure
     const flattenProjectStructure = (children) => {
-        let result = [];
+        let result = []
         for (const child of children) {
             if (child.children && child.children.length > 0) {
-                result = result.concat(flattenProjectStructure(child.children));
+                result = result.concat(flattenProjectStructure(child.children))
             }
-            result.push(child);
+            result.push(child)
         }
-        return result;
-    };
-    const flattenedItems = flattenProjectStructure(project.children);
-    const projectFolders = flattenedItems.filter(item => !item.resourcetype);
+        return result
+    }
+    const flattenedItems = flattenProjectStructure(project.children)
+    const projectFolders = flattenedItems.filter(item => !item.resourcetype)
 
     // Handle the POST request
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        const formData = new FormData(event.currentTarget);
+        event.preventDefault()
+        const formData = new FormData(event.currentTarget)
         if (!selectedParentFolder) {
-            formData.delete('parent');
+            formData.delete('parent')
         } else {
-            formData.append('parent', selectedParentFolder);
+            formData.append('parent', selectedParentFolder)
         }
-        formData.append('project', project.id);
+        formData.append('project', project.id)
         console.log(selectedParentFolder)
         try {
-            setCreating(true);
+            setCreating(true)
 
-            let url = '';
-            let data = {};
+            let url = ''
+            let data = {}
 
             switch (selectedItemType) {
                 case 'node':
-                    url = 'http://127.0.0.1:8000/api/item/node';
+                    url = 'http://127.0.0.1:8000/api/item/node'
                     data = { 
                         name: formData.get('name'),
-                    };
-                    break;
+                    }
+                    break
                 case 'note':
-                    url = 'http://127.0.0.1:8000/api/item/note';
+                    url = 'http://127.0.0.1:8000/api/item/note'
                     data = {
                         name: formData.get('noteTitle'),
                         text: formData.get('noteContent'),
                         node: formData.get('parent')
-                    };
-                    break;
+                    }
+                    break
                 case 'map':
-                    url = 'http://127.0.0.1:8000/api/item/map';
+                    url = 'http://127.0.0.1:8000/api/item/map'
                     data = { 
                         name: formData.get('mapTitle'),
                         node: formData.get('parent')
-                    };
+                    }
                     if (mapImage) {
                         formData.append('image', mapImage)
                     }
-                    break;
+                    break
                 default:
-                    console.error('Unknown item type');
-                    return;
+                    console.error('Unknown item type')
+                    return
             }
 
             Object.keys(data).forEach((key) => {
-                formData.append(key, data[key]);
-            });
+                formData.append(key, data[key])
+            })
 
             const response = await axios.post(url, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
-            });
+            })
             refetch()
-            onClose();
+            onClose()
         } catch (error) {
-            console.error('Error creating item:', error);
+            console.error('Error creating item:', error)
         } finally {
-            setCreating(false);
+            setCreating(false)
         }
-    };
+    }
 
     // List of available item types
     const itemTypes = [
         { value: 'node', label: 'Folder' },
         { value: 'note', label: 'Note' },
         { value: 'map', label: 'Map' },
-    ];
+    ]
 
     return (
         <Dialog open={open} onClose={onClose} PaperProps={{ component: 'form', onSubmit: handleSubmit }}>
@@ -214,7 +214,7 @@ const AddItemDialog = ({ project, open, onClose, refetch }) => {
                 </Button>
             </DialogActions>
         </Dialog>
-    );
+    )
 }
 
-export default AddItemDialog;
+export default AddItemDialog

@@ -33,7 +33,7 @@ const ProjectDetailsPage = () => {
           </Box>
         )
       case 'Map':
-        return <MapDisplay map={selectedItem} />
+        return <MapDisplay mapItem={selectedItem} projectItems={data.children}/>
       case null:
         return
       default:
