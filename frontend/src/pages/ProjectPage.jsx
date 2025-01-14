@@ -1,6 +1,6 @@
-import { Container, Typography, Box, CircularProgress, Button, Dialog, DialogTitle,DialogContent, } from "@mui/material";
+import { Container, Typography, Box, CircularProgress, Button } from "@mui/material";
 import ProjectCard from "../components/ProjectCard";
-import useFetch from '../hooks/useFetch'
+import useFetch from '../hooks/useFetch';
 import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRenameOutlineRounded';
 import { useState } from "react";
 import CreateProjectDialog from "../components/dialogs/CreateProjectDialog";
@@ -19,9 +19,6 @@ const ProjectPage = () => {
         refetch()
     };
 
-    // Page display
-    // ------------------------
-
     if (loading) return (
         <CircularProgress />
     )
@@ -32,8 +29,7 @@ const ProjectPage = () => {
     if (data) return (
         <Container maxWidth='lg' sx={{ marginTop: '20px' }}>
             <Button 
-                color='inherit' 
-                variant="outlined" 
+                sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }}
                 endIcon={<DriveFileRenameOutlineRoundedIcon/>}
                 onClick={handleOpenDialog}>
                 Create Project

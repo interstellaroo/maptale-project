@@ -79,8 +79,8 @@ const RemoveItemDialog = ({ project, open, onClose, refetch }) => {
                 </Box>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>Cancel</Button>
-                <Button type="submit" color="primary" disabled={removing}>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose}>Cancel</Button>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} type="submit" color="primary" disabled={removing}>
                     {removing ? "Removing..." : "Remove"}
                 </Button>
             </DialogActions>

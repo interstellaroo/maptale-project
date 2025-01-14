@@ -29,7 +29,7 @@ const ProjectDetailsPage = () => {
       case 'Note':
         return (
           <Box>
-            <NoteDisplay note={selectedItem}  />
+            <NoteDisplay note={selectedItem} refetch={refetch} />
           </Box>
         )
       case 'Map':

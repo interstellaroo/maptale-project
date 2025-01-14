@@ -1,5 +1,5 @@
 import { Box, Typography, Button } from "@mui/material";
-import landingImage from '../assets/landing_map.jpg'; // Make sure to replace with your actual image path
+import landingImage from '../assets/landing_map.jpg';
 
 const HomePage = () => {
     return (

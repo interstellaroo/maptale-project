@@ -1,6 +1,8 @@
 from .views import *
 from django.urls import path
 
+### URL patterns for the content_mgmt app~~
+
 urlpatterns = [
     path('', BaseItemView.as_view()),
     path('node', NodeView.as_view()),

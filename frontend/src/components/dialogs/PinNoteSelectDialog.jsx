@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, TextField, MenuItem, Button, Box } from '@mui/material';
 
 export default function NotePinSelectDialog({ notes, open, onClose, onSelect }) {
@@ -33,8 +33,8 @@ export default function NotePinSelectDialog({ notes, open, onClose, onSelect }) 
                 </Box>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>Cancel</Button>
-                <Button onClick={handleConfirm} disabled={!selectedNote}>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose}>Cancel</Button>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={handleConfirm} disabled={!selectedNote}>
                     Confirm
                 </Button>
             </DialogActions>

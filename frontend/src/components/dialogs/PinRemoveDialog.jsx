@@ -45,10 +45,10 @@ const PinRemoveDialog = ({ open, onClose, pins, onRemove }) => {
                 </TextField>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} color="secondary">
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose} color="secondary">
                     Cancel
                 </Button>
-                <Button onClick={handleRemove} color="primary" disabled={removing}>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={handleRemove} color="primary" disabled={removing}>
                     {removing ? <CircularProgress size={24} /> : 'Remove'}
                 </Button>
             </DialogActions>

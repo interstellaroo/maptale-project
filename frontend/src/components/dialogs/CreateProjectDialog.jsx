@@ -1,8 +1,8 @@
-import React, { useState } from "react"
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, TextField } from "@mui/material"
+import { useState } from "react"
 
 const CreateProjectDialog = ({ open, onClose, onCreate }) => {
-    const [creating, setCreating] = React.useState(false)
+    const [creating, setCreating] = useState(false)
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -56,10 +56,10 @@ const CreateProjectDialog = ({ open, onClose, onCreate }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose} color="secondary">
+        <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose}>
           Cancel
         </Button>
-        <Button type="submit" color="primary" disabled={creating}>
+        <Button  sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} type="submit" disabled={creating}>
           {creating ? "Creating..." : "Create"}
         </Button>
       </DialogActions>

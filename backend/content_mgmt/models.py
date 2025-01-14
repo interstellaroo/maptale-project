@@ -4,6 +4,11 @@ import uuid
 from mptt.models import MPTTModel, TreeForeignKey
 from project_mgmt.models import Project
 
+### Content models~~
+### Node is a tree structure that can have children of type Note or Map
+### Note and Map extend polymorphic model BaseItem
+
+# Node ---
 class Node(MPTTModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='children')
@@ -17,6 +22,7 @@ class Node(MPTTModel):
     def __str__(self):
         return self.name
 
+# BaseItem ---
 class BaseItem(PolymorphicModel):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     node = models.ForeignKey(Node, on_delete=models.CASCADE, related_name='items')
@@ -25,7 +31,8 @@ class BaseItem(PolymorphicModel):
 
     def __str__(self):
         return self.name
-    
+
+# Note ---
 class Note(BaseItem):
     text = models.TextField(blank=True, null=True)
 
@@ -39,7 +46,7 @@ class Map(BaseItem):
     def __str__(self):
         return f"Map: {self.name}"
 
-
+# Pin ---
 class Pin(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     map = models.ForeignKey(Map, on_delete=models.CASCADE, related_name='pins')

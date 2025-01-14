@@ -58,10 +58,10 @@ const PutProjectDialog = ({ project, open, onClose, refetch }) => {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={onClose} color="secondary">
+            <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose} color="secondary">
               Cancel
             </Button>
-            <Button type="submit" color="primary" disabled={updating}>
+            <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} type="submit" color="primary" disabled={updating}>
               {updating ? 'Updating...' : 'Update'}
             </Button>
           </DialogActions>

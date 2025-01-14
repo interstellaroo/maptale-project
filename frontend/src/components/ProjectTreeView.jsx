@@ -4,7 +4,7 @@ import { forwardRef } from "react"
 const ProjectTreeView = ({ project, handleItemChange, apiRef}) => {
 
     const getItemLabel = (item) => item.name
- 
+
     const CustomTreeItem = forwardRef(function CustomTreeItem(props, ref) {
         const { id, itemId, label, disabled, children, ...other } = props
 

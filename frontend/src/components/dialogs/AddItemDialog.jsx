@@ -1,10 +1,9 @@
-import { DialogContent, Box, DialogContentText, DialogTitle, TextField, Dialog, Divider, FormControl, InputLabel, Select, MenuItem, DialogActions, Button, Typography } from "@mui/material"
-import { useState, useEffect } from "react"
+import { DialogContent, Box, DialogContentText, DialogTitle, TextField, Dialog, Divider, MenuItem, DialogActions, Button, Typography } from "@mui/material"
+import { useState } from "react"
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import {styled} from "@mui/material"
 import axios from 'axios'
 
-// Component for file input
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -19,12 +18,10 @@ const VisuallyHiddenInput = styled('input')({
 
 const AddItemDialog = ({ project, open, onClose, refetch }) => {
     const [creating, setCreating] = useState(false)
-    // Main state values selected in the form
     const [selectedItemType, setSelectedItemType] = useState('node')
     const [selectedParentFolder, setSelectedParentFolder] = useState('')
     const [mapImage, setMapImage] = useState(null)
-    
-    // Flattening out the project structure
+
     const flattenProjectStructure = (children) => {
         let result = []
         for (const child of children) {
@@ -208,8 +205,8 @@ const AddItemDialog = ({ project, open, onClose, refetch }) => {
                 </Box>
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose}>Cancel</Button>
-                <Button type="submit" color="primary" disabled={creating}>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose}>Cancel</Button>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} type="submit" color="primary" disabled={creating}>
                     {creating ? "Creating..." : "Create"}
                 </Button>
             </DialogActions>

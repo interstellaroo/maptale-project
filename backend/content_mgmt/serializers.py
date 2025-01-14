@@ -2,6 +2,11 @@ from rest_framework import serializers
 from rest_polymorphic.serializers import PolymorphicSerializer
 from .models import BaseItem, Note, Map, Node, Pin
 
+### Content Serializers~~
+### BaseItemPolimorphicSerializer that can be serialized to Note, Map or BaseItem
+### Depending on the type of the item, the serializer will use the corresponding serializer
+
+# PinSerializer ---
 class PinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pin
@@ -12,7 +17,8 @@ class PinSerializer(serializers.ModelSerializer):
             'x', 
             'y',
             ]
-        
+
+# BaseItemSerializer ---
 class BaseItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = BaseItem
@@ -22,6 +28,7 @@ class BaseItemSerializer(serializers.ModelSerializer):
             'node'
         ]
 
+# NoteSerializer ---
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
@@ -32,6 +39,7 @@ class NoteSerializer(serializers.ModelSerializer):
             'node'
         ]
 
+# MapSerializer ---
 class MapSerializer(serializers.ModelSerializer):
     pins = PinSerializer(many=True, read_only=True)
     
@@ -45,6 +53,7 @@ class MapSerializer(serializers.ModelSerializer):
             'pins'
         ]
 
+# BaseItemPolimorphicSerializer ---
 class BaseItemPolimorphicSerializer(PolymorphicSerializer):
     model_serializer_mapping = {
         BaseItem: BaseItemSerializer,
@@ -52,6 +61,7 @@ class BaseItemPolimorphicSerializer(PolymorphicSerializer):
         Map: MapSerializer,
     }
 
+# NodeSerializer ---
 class NodeSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
 
@@ -68,6 +78,7 @@ class NodeSerializer(serializers.ModelSerializer):
         item_nodes = BaseItemPolimorphicSerializer(obj.items.all(), many=True).data
         return child_nodes + item_nodes
 
+# NodeDetailSerializer ---
 class NodeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Node

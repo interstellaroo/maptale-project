@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, CircularProgress, Typography, Box } from '@mui/material';
 import axios from 'axios';
+import NoteDisplay from '../NoteDisplay';
 
 const PinNoteDialog = ({ open, noteId, onClose }) => {
     const [note, setNote] = useState(null);
@@ -34,16 +35,11 @@ const PinNoteDialog = ({ open, noteId, onClose }) => {
                 ) : error ? (
                     <Typography color="error">{error}</Typography>
                 ) : (
-                    <Box>
-                        <Typography variant="h5" gutterBottom>
-                            {note.title}
-                        </Typography>
-                        <Typography>{note.text}</Typography>
-                    </Box>
+                    <NoteDisplay note={note} />
                 )}
             </DialogContent>
             <DialogActions>
-                <Button onClick={onClose} color="primary">
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} onClick={onClose} color="primary">
                     Close
                 </Button>
             </DialogActions>

@@ -2,6 +2,9 @@ from rest_framework import serializers
 from .models import Project
 from content_mgmt.serializers import NodeSerializer
 
+### Project Serializers
+###
+
 class ProjectDetailSerializer(serializers.ModelSerializer):
     children = serializers.SerializerMethodField()
 

@@ -94,14 +94,14 @@ const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
                 alignItems: 'center',
                 marginTop: '20px',
             }}>
-                <Button color='inherit' variant='outlined' endIcon={<AddCircleOutlineRoundedIcon /> } onClick={handleItemDialogOpen}>Add</Button>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} endIcon={<AddCircleOutlineRoundedIcon /> } onClick={handleItemDialogOpen}>Add</Button>
                 <AddItemDialog 
                     project={project}
                     open={itemDialogOpen}
                     onClose={handleItemDialogClose}
                     refetch={refetch}
                 />
-                <Button color='inherit' variant='outlined' endIcon={<HighlightOffRoundedIcon /> } onClick={handleItemRemoveOpen}>Remove</Button>
+                <Button sx={{ backgroundColor: '#3c493f', color: '#fff','&:hover': {backgroundColor: '#8fd1b0'} }} endIcon={<HighlightOffRoundedIcon /> } onClick={handleItemRemoveOpen}>Remove</Button>
                 <RemoveItemDialog 
                     project={project}
                     open={itemRemoveOpen}

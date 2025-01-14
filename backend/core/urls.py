@@ -3,10 +3,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+# API URLS~~
 api_urls = [
     path('project/', include('project_mgmt.urls')),
     path('item/', include('content_mgmt.urls'))
 ]
+
+# Main URLS~~
 
 urlpatterns = [
     path('admin/', admin.site.urls),
