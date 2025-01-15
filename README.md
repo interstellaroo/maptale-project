@@ -81,5 +81,3 @@ MapTale is a project management tool that allows users to create and manage proj
 - The backend is built using Django and Django REST framework.
 - The frontend is built using React and Material-UI.
 - The project uses SQLite as the database.
-
-Feel free to explore the codebase and contribute to the project!
