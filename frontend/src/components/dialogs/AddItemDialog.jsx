@@ -3,6 +3,7 @@ import { useState } from "react"
 import CloudUploadIcon from '@mui/icons-material/CloudUpload'
 import {styled} from "@mui/material"
 import axios from 'axios'
+import config from "../../config"
 
 const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
@@ -54,13 +55,13 @@ const AddItemDialog = ({ project, open, onClose, refetch }) => {
 
             switch (selectedItemType) {
                 case 'node':
-                    url = 'http://127.0.0.1:8000/api/item/node'
+                    url = `${config.apiUrl}/api/item/node`
                     data = { 
                         name: formData.get('name'),
                     }
                     break
                 case 'note':
-                    url = 'http://127.0.0.1:8000/api/item/note'
+                    url = `${config.apiUrl}/api/item/note`
                     data = {
                         name: formData.get('noteTitle'),
                         text: formData.get('noteContent'),
@@ -68,7 +69,7 @@ const AddItemDialog = ({ project, open, onClose, refetch }) => {
                     }
                     break
                 case 'map':
-                    url = 'http://127.0.0.1:8000/api/item/map'
+                    url = `${config.apiUrl}/api/item/map`
                     data = { 
                         name: formData.get('mapTitle'),
                         node: formData.get('parent')

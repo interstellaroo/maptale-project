@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogContent, DialogContentText, DialogActions, DialogTitle, TextField } from "@mui/material";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import config from "../../config";
 
 const PutProjectDialog = ({ project, open, onClose, refetch }) => {
     const [updating, setUpdating] = useState(false);
@@ -17,7 +18,7 @@ const PutProjectDialog = ({ project, open, onClose, refetch }) => {
 
     try {
         setUpdating(true);
-        const response = await axios.put(`http://127.0.0.1:8000/api/project/${project.id}`, updatedProject)
+        const response = await axios.put(`${config.apiUrl}/api/project/${project.id}`, updatedProject)
         refetch()
         onClose()
     } catch (error) {

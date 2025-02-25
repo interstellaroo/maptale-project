@@ -5,10 +5,11 @@ import DriveFileRenameOutlineRoundedIcon from '@mui/icons-material/DriveFileRena
 import { useState } from "react";
 import CreateProjectDialog from "../components/dialogs/CreateProjectDialog";
 import axios from "axios";
+import config from "../config";
 
 
 const ProjectPage = () => {
-    const url = "http://127.0.0.1:8000/api/project/"
+    const url = `${config.apiUrl}/api/project/`
     const { data, loading, error, refetch } = useFetch(url)
     const [dialogOpen, setDialogOpen] = useState(false)
 

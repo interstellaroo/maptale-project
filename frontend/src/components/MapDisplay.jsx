@@ -8,10 +8,11 @@ import PinRemoveDialog from './dialogs/PinRemoveDialog';
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
+import config from '../config';
 
 const MapDisplay = ({ mapItem, projectItems }) => {
     const mapRef = useRef(null);
-    const imageUrl = `http://127.0.0.1:8000/${mapItem.image}`;
+    const imageUrl = `${config.apiUrl}/${mapItem.image}`;
     const [bounds, setBounds] = useState(null);
     const [mapInstance, setMapInstance] = useState(null);
     const [isPinPlacementMode, setPinPlacementMode] = useState(false);
@@ -115,7 +116,7 @@ const MapDisplay = ({ mapItem, projectItems }) => {
         const { x, y } = selectedPinCoords;
 
         axios
-            .post(`http://127.0.0.1:8000/api/item/pin`, {
+            .post(`${config.apiUrl}/api/item/pin`, {
                 map: mapItem.id,
                 note: selectedNote.id,
                 x,

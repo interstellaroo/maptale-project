@@ -1,6 +1,7 @@
 import { Button, MenuItem, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
 import axios from "axios";
 import { useState } from "react"
+import config from "../../config";
 
 
 const RemoveItemDialog = ({ project, open, onClose, refetch }) => {
@@ -31,10 +32,10 @@ const RemoveItemDialog = ({ project, open, onClose, refetch }) => {
             if (selectedItem.resourcetype) {
                 switch (selectedItem.resourcetype) {
                     case 'Note':
-                        url = `http://127.0.0.1:8000/api/item/note/${selectedItem.id}`
+                        url = `${config.apiUrl}/api/item/note/${selectedItem.id}`
                         break
                     case 'Map':
-                        url = `http://127.0.0.1:8000/api/item/map/${selectedItem.id}`
+                        url = `${config.apiUrl}/api/item/map/${selectedItem.id}`
                         break;
                     default:
                         console.error('Unknown item type')
@@ -42,7 +43,7 @@ const RemoveItemDialog = ({ project, open, onClose, refetch }) => {
                 }
             }
             else {
-                url = `http://127.0.0.1:8000/api/item/node/${selectedItem.id}`
+                url = `${config.apiUrl}/api/item/node/${selectedItem.id}`
             }
 
             const response = await axios.delete(url)

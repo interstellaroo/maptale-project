@@ -6,10 +6,11 @@ import { useState } from 'react'
 import { useTreeViewApiRef } from '@mui/x-tree-view'
 import NoteDisplay from '../components/NoteDisplay'
 import MapDisplay from '../components/MapDisplay'
+import config from '../config'
 
 const ProjectDetailsPage = () => {
   const { id } = useParams()
-  const { data, loading, error, refetch } = useFetch(`http://127.0.0.1:8000/api/project/${id}`)
+  const { data, loading, error, refetch } = useFetch(`${config.apiUrl}/api/project/${id}`)
   const [selectedItem, setSelectedItem] = useState(null)
   const apiRef = useTreeViewApiRef();
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, CircularProgress, Typography, Box } from '@mui/material';
 import axios from 'axios';
 import NoteDisplay from '../NoteDisplay';
+import config from '../../config';
 
 const PinNoteDialog = ({ open, noteId, onClose }) => {
     const [note, setNote] = useState(null);
@@ -13,7 +14,7 @@ const PinNoteDialog = ({ open, noteId, onClose }) => {
         setLoading(true);
         setError(null);
 
-        axios.get(`http://127.0.0.1:8000/api/item/note/${noteId}`)
+        axios.get(`${config.apiUrl}/api/item/note/${noteId}`)
             .then((response) => {
                 setNote(response.data);
                 setLoading(false);

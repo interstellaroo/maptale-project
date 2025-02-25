@@ -29,7 +29,7 @@ MapTale is a project management tool that allows users to create and manage proj
 3. Install the required Python packages:
 
     ```
-    pip install -r requirements.txt
+    pip install -r ../requirements.txt
     ```
 
 4. Apply the database migrations:

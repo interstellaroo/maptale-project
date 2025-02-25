@@ -10,13 +10,14 @@ import PutProjectDialog from './dialogs/PutProjectDialog'
 import { useState } from 'react'
 import AddItemDialog from './dialogs/AddItemDialog'
 import RemoveItemDialog from './dialogs/RemoveItemDialog'
+import config from '../config'
 
 
 const ProjectSideBar = ({ project, handleItemChange, apiRef, refetch }) => {
     const navigate = useNavigate()
     const handleProjectDelete = async () => {
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/api/project/${project.id}`)
+            const response = await axios.delete(`${config.apiUrl}/api/project/${project.id}`)
             navigate("/project")
         } catch (error) {
             console.error('Error deleting item: ', error.message)

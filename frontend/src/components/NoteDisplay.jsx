@@ -3,6 +3,7 @@ import { useState } from 'react'
 import SaveIcon from '@mui/icons-material/Save'
 import TextEditor from './TextEditor'
 import axios from 'axios'
+import config from '../config'
 
 const NoteDisplay = ({ note, refetch}) => {
   const [currentNote, setCurrentNote] = useState(note)
@@ -10,7 +11,7 @@ const NoteDisplay = ({ note, refetch}) => {
   const handleSave = async () => {
     try {
       console.log('Saving note:', currentNote)
-      await axios.put(`http://127.0.0.1:8000/api/item/note/${currentNote.id}`, {
+      await axios.put(`${config.apiUrl}/api/item/note/${currentNote.id}`, {
         id: currentNote.id,
         name: currentNote.name,
         text: currentNote.text,

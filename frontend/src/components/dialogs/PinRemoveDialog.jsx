@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField, MenuItem, CircularProgress, Typography } from '@mui/material';
 import axios from 'axios';
+import config from '../../config';
 
 const PinRemoveDialog = ({ open, onClose, pins, onRemove }) => {
     const [selectedPin, setSelectedPin] = useState(null);
@@ -14,7 +15,7 @@ const PinRemoveDialog = ({ open, onClose, pins, onRemove }) => {
         setError(null);
 
         try {
-            await axios.delete(`http://127.0.0.1:8000/api/item/pin/${selectedPin.id}`);
+            await axios.delete(`${config.apiUrl}/api/item/pin/${selectedPin.id}`);
             onRemove(selectedPin.id);
             onClose();
         } catch (err) {
